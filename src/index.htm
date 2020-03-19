@@ -13,6 +13,35 @@
 
 <style>
 
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  margin-top: 1em;
+  margin-left: 1em;
+  padding: 5px;
+}
+
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 2em;
+  min-width: 2em;
+  max-width: 2em;
+  word-break: break-all;
+}
+
+  /* tr:nth-of-type(odd) {
+        background-color:lightgray;
+      } */
+
+      tr:nth-child(even) {background-color: lightsteelblue;}
+
+  
+
 .button {
   transition-duration: 0.4s;
 }
@@ -32,5 +61,6 @@
   <div id="output"></div>
     
   <script src="bundle.js"></script>
+  
 </body>
 </html>

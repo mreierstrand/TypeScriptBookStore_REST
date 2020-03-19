@@ -21,13 +21,15 @@ function ShowBooks(): void {
     .then(function(response: AxiosResponse<IBook[]>): void {
 
         //Virker fint, men ser grimt ud
-        let result: string ="<ul id='booklist' class='list-group' >";
-        response.data.forEach((book: IBook) => {
-            result += "<li style='margin: 5px; background: lightgrey;' class='list-group-item'>" + "<b>Book ID: </b>" + book.id + " " + "<br><b>Title: </b>" + "<i>" + book.title + "</i>" + " " +  "<br><b>Author: </b>" + book.author + " " + "<br><b>Publisher: </b>" + book.publisher + " " + "<br><b>Price: </b>" + book.price + " kr." + "</li>";
-        });
-        result += "</ul>";
-        outputElement.innerHTML = result;
-        
+        // let result: string ="<ul id='booklist' class='list-group' >";
+        // response.data.forEach((book: IBook) => {
+        //     result += "<li style='margin: 5px; background: lightgrey;' class='list-group-item'>" + "<b>Book ID: </b>" + book.id + " " + "<br><b>Title: </b>" + "<i>" + book.title + "</i>" + " " +  "<br><b>Author: </b>" + book.author + " " + "<br><b>Publisher: </b>" + book.publisher + " " + "<br><b>Price: </b>" + book.price + " kr." + "</li>";
+        // });
+        // result += "</ul>";
+        // outputElement.innerHTML = result;
+        let langHTML = json2table100(response.data)
+        console.log(langHTML);
+        outputElement.innerHTML = langHTML;
     })
 
     .catch(function (error: AxiosError): void { // error in GET or in generateSuccess?
@@ -40,5 +42,30 @@ function ShowBooks(): void {
             outputElement.innerHTML = error.message;
         }
     });
+}
 
+export function json2table100(json: any): string {
+    let cols: string[] = Object.keys(json[0]);
+    let headerRow: string = "";
+    let bodyRows: string = "";
+    cols.forEach((colName: string) => {
+        headerRow += "<th>" + capitalizeFirstLetter(colName) + "</th>"
+    });
+    json.forEach((row: any) => {
+        bodyRows += "<tr>";
+        // loop over object properties and create cells
+        cols.forEach((colName: string) => {
+            bodyRows += "<td>" + (typeof row[colName] === "object" ? JSON.stringify(row[colName]) : row[colName]) + "</td>";
+        });
+        bodyRows += "</tr>";
+    });
+    return "<table><thead><tr>" +
+        headerRow +
+        "</tr></thead><tbody style='margin-left: 100px;'>" +
+        bodyRows +
+        "</tbody></table>";
+}
+
+export function capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
