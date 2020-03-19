@@ -2,14 +2,33 @@
 <html lang="en-US">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Coding Template</title>
+  <title>Olivers Book Store</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
+<style>
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background: red;
+}
+
+</style>
+
+
 <body>
-  <h1>Webpack - TypeScript - Scss</h1>
-  <h2>TypeScript Hello World</h2>  
-  <div id="content"></div>
+  <h1 style="margin-left: 5px;">Olivers Book Store</h1>
+  
+  <button class="button" style="margin-left: 1em; border: 2px; border-radius: 20px;" id=getAllButton>Get all books here!</button>
+  <div id="output"></div>
     
   <script src="bundle.js"></script>
 </body>
