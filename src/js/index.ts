@@ -19,9 +19,11 @@ buttonElement.addEventListener("click",ShowBooks);
 function ShowBooks(): void {
     axios.get<IBook[]>(baseUri)
     .then(function(response: AxiosResponse<IBook[]>): void {
+
+        //Virker fint, men ser grimt ud
         let result: string ="<ul id='booklist' class='list-group' >";
         response.data.forEach((book: IBook) => {
-            result += "<li style='margin: 10px; background: lightgrey;' class='list-group-item'>" + book.id + " " + book.title + " " +  book.author + " " + book.publisher + " " + book.price + "</li>";
+            result += "<li style='margin: 5px; background: lightgrey;' class='list-group-item'>" + "<b>Book ID: </b>" + book.id + " " + "<br><b>Title: </b>" + "<i>" + book.title + "</i>" + " " +  "<br><b>Author: </b>" + book.author + " " + "<br><b>Publisher: </b>" + book.publisher + " " + "<br><b>Price: </b>" + book.price + " kr." + "</li>";
         });
         result += "</ul>";
         outputElement.innerHTML = result;
