@@ -27,6 +27,7 @@ function ShowBooks(): void {
         });
         result += "</ul>";
         outputElement.innerHTML = result;
+        
     })
 
     .catch(function (error: AxiosError): void { // error in GET or in generateSuccess?
